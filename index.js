@@ -136,8 +136,7 @@ const chatIds = fetchChatIds();
 
 
 // Function to format and log trade data
-// Function to format and log trade data
-async function logTradeData(chatId,GIF, coin, tradeData, totalSpent , totalHodlValue , position) {
+async function logTradeData(chatId, GIF, coin, tradeData, totalSpent, totalHodlValue, position) {
   const prices = tradeData.prices.map(price => price[1]);
   const marketCaps = tradeData.market_caps.map(cap => cap[1]);
 
@@ -145,20 +144,19 @@ async function logTradeData(chatId,GIF, coin, tradeData, totalSpent , totalHodlV
   const meanPrice = prices.reduce((total, price) => total + price, 0) / prices.length;
   const meanMarketCap = marketCaps.reduce((total, cap) => total + cap, 0) / marketCaps.length;
 
+  // Fetch the quantity from an external API
+  const roundedPosition = Math.round(position);
+  const message = `📈 Recent trade for *${coin.name} (${coin.symbol})*:\n` +
+                  `💲 Current price: *$${latestPrice.toFixed(6)}*\n` +
+                  `💹 Got: *${totalHodlValue}*\n` +
+                  `🎯 Position: *${roundedPosition}%*\n` +
+                  `💹 Avg Buyprice: *$${meanPrice.toFixed(6)}*\n` +
+                  `📊 Market cap: *$${meanMarketCap.toFixed(2)}*\n`;
 
-    // Fetch the quantity from an external API
-    const roundedPosition = Math.round(position);
-  const message = `📈 Recent trade for ${coin.name} (${coin.symbol}):\n` +
-                  `💲 Current price: $${latestPrice.toFixed(6)}\n` +
-                  `💹 Got : ${totalHodlValue}\n`+
-                  `🎯 Position : ${roundedPosition}%\n`+
-                  `💹 Avg Buyprice: $${meanPrice.toFixed(6)}\n` +
-                  `📊 market cap: $${meanMarketCap.toFixed(2)}\n`;
   console.log(message);
-  // bot.sendMessage(chatId, message);
-  bot.sendAnimation(chatId, GIF, {caption: message});
+  // Send the GIF along with the message
+  bot.sendAnimation(chatId, GIF, {caption: message, parse_mode: 'Markdown'});
 }
-
 
 
 // Function to validate Solana public key format
