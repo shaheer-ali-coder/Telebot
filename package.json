@@ -1,5 +1,5 @@
 {
-  "name": "telebot",
+  "name": "buy_bot",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,9 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.18.2",
-    "node-schedule": "^2.1.1",
-    "node-telegram-bot-api": "^0.64.0",
-    "stripe": "^14.14.0"
+    "@solana/web3.js": "^1.91.8",
+    "axios": "^1.6.8",
+    "node-telegram-bot-api": "^0.65.1"
   }
 }
