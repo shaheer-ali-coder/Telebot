@@ -1,9 +1,8 @@
 const TelegramBot = require('node-telegram-bot-api');
 const fs = require('fs');const axios = require('axios')
 const path = require('path');
-const fetch = require('node-fetch');
-// Replace 'YOUR_TELEGRAM_BOT_TOKEN' with your actual bot token
-const token = '6322304990:AAGl871HQ6LWXqkIb4CiAayKiH_RDwNCuTg';
+const { fileURLToPath } = require('url');
+const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));const token = '6322304990:AAGl871HQ6LWXqkIb4CiAayKiH_RDwNCuTg';
 const {
     Keypair,
     Connection,
